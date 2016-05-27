@@ -17,7 +17,7 @@ Try it yourself!
 * Build your own open source or commercial solution based on this code.
 
  
-![bzinchenko](BPMN_View.png)
+![bzinchenko](Images/BPMN_View.png)
 
 ##Code example
 Jump start your BPMN capable solution in minutes!
@@ -32,5 +32,5 @@ img.Save("B.2.0.png", ImageFormat.Png);
 
 Below is the result:
 
-![bzinchenko](B.2.0.png)
+![bzinchenko](Images/B.2.0.png)
 
