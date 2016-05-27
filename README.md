@@ -20,6 +20,8 @@ Try it yourself!
 ![bzinchenko](BPMN_View.png)
 
 ##Code example
+Jump start your BPMN capable solution in minutes!
+
 Sample code to read BPMN file and save it as an image:
 
 ```csharp
@@ -28,4 +30,7 @@ Image img = BPMN.Sharp.Render.DiagramImage(model, 0, 2.0f);
 img.Save("B.2.0.png", ImageFormat.Png);
 ```
 
-Jump start your BPMN capable solution in minutes!
+Below is the result:
+
+![bzinchenko](B.2.0.png)
+
