@@ -2,6 +2,7 @@
 A simple free tool to view and print business process diagrams in a popular BPMN format. 
 
 * Full conformance to the latest version of [BPMN 2.0 specification by OMG](http://www.bpmn.org/).
+* Import models from all [major BPM vendors](http://bpmn-miwg.github.io/bpmn-miwg-tools/)
 * Strict validation of the model according to BPMN specification.
 * Arbitrary scaling and zooming view of most complex diagrams.
 * Support of raster and vector image output.
@@ -14,6 +15,13 @@ Try it yourself!
 * Or download pre-built binary package.
 * Test it on files from [offcial BPMN test suite](https://github.com/bpmn-miwg/bpmn-miwg-test-suite).
 * Build your own open source or commercial solution based on this code.
+
  
 ![bzinchenko](BPMN_View.png)
 
+##Code example
+Sample code to read BPMN file and save it as an image:
+
+
+
+Jump start your BPMN capable solution in minutes!
