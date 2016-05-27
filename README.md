@@ -25,8 +25,8 @@ Jump start your BPMN capable solution in minutes!
 Sample code to read BPMN file and save it as an image:
 
 ```csharp
-Model model = BPMN.Sharp.Reader.Read("B.2.0.bpmn");
-Image img = BPMN.Sharp.Render.DiagramImage(model, 0, 2.0f);
+Model model = BPMN.Model.Read(file);
+Image img = model.GetImage(0, 2.0f);
 img.Save("B.2.0.png", ImageFormat.Png);
 ```
 
