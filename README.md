@@ -11,8 +11,9 @@ A simple free tool to view and print business process diagrams in a popular BPMN
 * Loyal open source license for private and commercial use.
  
 Try it yourself!
-* Clone project repository and build on Microsoft Visual Studio.
-* Or download pre-built binary package.
+* Download one-click [setup for Windows](https://github.com/bzinchenko/bpmnview/blob/master/Setup/BPMNView_Setup_1_0_0_1.zip).
+* Download pre-built [binary package](https://github.com/bzinchenko/bpmnview/blob/master/Setup/BPMNView_Files_1_0_0_1.zip).
+* Clone project repository and build it with Microsoft Visual Studio.
 * Test it on files from [offcial BPMN test suite](https://github.com/bpmn-miwg/bpmn-miwg-test-suite).
 * Build your own open source or commercial solution based on this code.
 
