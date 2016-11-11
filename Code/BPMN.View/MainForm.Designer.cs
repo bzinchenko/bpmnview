@@ -321,6 +321,7 @@
       buttonTable.TabIndex = 3;
       buttonTable.Text = "View Elements..";
       buttonTable.UseVisualStyleBackColor = true;
+      buttonTable.Click += new System.EventHandler(this.buttonTable_Click);
       // 
       // MainForm
       // 

@@ -213,5 +213,11 @@ namespace BPMN.View
       return destImage;
     }
 
+    private void buttonTable_Click(object sender, EventArgs e)
+    {
+      ElementsForm form = new ElementsForm(model);
+      form.ShowDialog();
+    }
+
   }
 }
