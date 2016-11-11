@@ -12,6 +12,7 @@ namespace BPMN.View
 {
   public partial class MainForm : Form
   {
+    private Model model;
     private Image diagramImage;
     private double zoomRatio;
 
@@ -32,16 +33,28 @@ namespace BPMN.View
         string file = openFileDialog1.FileName;
         try
         {
-          Model model = BPMN.Model.Read(file);
-          diagramImage = model.GetImage(0, 2.0f);
+          model = BPMN.Model.Read(file);
+          foreach (Diagram dia in model.Diagrams)
+            comboDiagram.Items.Add(dia.Name);
+          if (comboDiagram.Items.Count > 0)
+            comboDiagram.SelectedIndex = 0;
           this.Text = "BPMN View - " + file;
-          ZoomReset();
         }
         catch (Exception ex)
         {
           this.Text = "BPMN View";
           MessageBox.Show("Error opening file!");
         }
+      }
+    }
+
+    private void comboDiagram_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      if (model != null)
+      {
+        int idx = comboDiagram.SelectedIndex;
+        if(idx >= 0) diagramImage = model.GetImage(idx, 2.0f);
+        ZoomReset();
       }
     }
 

@@ -29,6 +29,7 @@
     private void InitializeComponent()
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+      System.Windows.Forms.Button buttonTable;
       this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
       this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
       this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -52,12 +53,17 @@
       this.pictureDiagram = new System.Windows.Forms.PictureBox();
       this.panelImage = new System.Windows.Forms.Panel();
       this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+      this.panelTop = new System.Windows.Forms.Panel();
+      this.label1 = new System.Windows.Forms.Label();
+      this.comboDiagram = new System.Windows.Forms.ComboBox();
+      buttonTable = new System.Windows.Forms.Button();
       this.panelLeft.SuspendLayout();
       this.groupBox2.SuspendLayout();
       this.groupBox1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureLogo)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureDiagram)).BeginInit();
       this.panelImage.SuspendLayout();
+      this.panelTop.SuspendLayout();
       this.SuspendLayout();
       // 
       // openFileDialog1
@@ -276,12 +282,53 @@
       // 
       this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
       // 
+      // panelTop
+      // 
+      this.panelTop.Controls.Add(buttonTable);
+      this.panelTop.Controls.Add(this.comboDiagram);
+      this.panelTop.Controls.Add(this.label1);
+      this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+      this.panelTop.Location = new System.Drawing.Point(101, 0);
+      this.panelTop.Name = "panelTop";
+      this.panelTop.Size = new System.Drawing.Size(788, 41);
+      this.panelTop.TabIndex = 4;
+      // 
+      // label1
+      // 
+      this.label1.AutoSize = true;
+      this.label1.Location = new System.Drawing.Point(12, 14);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(82, 13);
+      this.label1.TabIndex = 0;
+      this.label1.Text = "Select Diagram:";
+      // 
+      // comboDiagram
+      // 
+      this.comboDiagram.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.comboDiagram.FormattingEnabled = true;
+      this.comboDiagram.Location = new System.Drawing.Point(100, 11);
+      this.comboDiagram.Name = "comboDiagram";
+      this.comboDiagram.Size = new System.Drawing.Size(459, 21);
+      this.comboDiagram.TabIndex = 1;
+      this.comboDiagram.SelectedIndexChanged += new System.EventHandler(this.comboDiagram_SelectedIndexChanged);
+      // 
+      // buttonTable
+      // 
+      buttonTable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      buttonTable.Location = new System.Drawing.Point(677, 9);
+      buttonTable.Name = "buttonTable";
+      buttonTable.Size = new System.Drawing.Size(99, 23);
+      buttonTable.TabIndex = 3;
+      buttonTable.Text = "View Elements..";
+      buttonTable.UseVisualStyleBackColor = true;
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.SystemColors.Window;
       this.ClientSize = new System.Drawing.Size(889, 555);
+      this.Controls.Add(this.panelTop);
       this.Controls.Add(this.panelImage);
       this.Controls.Add(this.panelLeft);
       this.Controls.Add(this.statusStrip1);
@@ -295,6 +342,8 @@
       ((System.ComponentModel.ISupportInitialize)(this.pictureDiagram)).EndInit();
       this.panelImage.ResumeLayout(false);
       this.panelImage.PerformLayout();
+      this.panelTop.ResumeLayout(false);
+      this.panelTop.PerformLayout();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -325,6 +374,9 @@
     private System.Windows.Forms.Button buttonAbout;
     private System.Windows.Forms.Panel panelImage;
     private System.Drawing.Printing.PrintDocument printDocument1;
+    private System.Windows.Forms.Panel panelTop;
+    private System.Windows.Forms.ComboBox comboDiagram;
+    private System.Windows.Forms.Label label1;
   }
 }
 
