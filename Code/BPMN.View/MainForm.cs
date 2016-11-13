@@ -57,6 +57,7 @@ namespace BPMN.View
       DialogResult result = openFileDialog1.ShowDialog();
       if (result == DialogResult.OK)
       {
+        comboDiagram.Items.Clear();
         string file = openFileDialog1.FileName;
         try
         {
