@@ -48,17 +48,12 @@ namespace BPMN.View
     private void ElementsForm_Load(object sender, EventArgs e)
     {
       if (model != null)
-        gridElements.DataSource = ElementsTable(model.Elements);
+        gridElements.DataSource = ElementsTable(model.Elements, null);
     }
 
     private void gridElements_SelectionChanged(object sender, EventArgs e)
     {
       ViewElement(true);
-    }
-
-    private void gridSubElements_SelectionChanged(object sender, EventArgs e)
-    {
-      //ViewElement(false);
     }
 
     private void ViewElement(bool primary) 
@@ -78,12 +73,25 @@ namespace BPMN.View
             if (el.Elements != null)
             {
               List<Element> elm = new List<Element>();
+              List<string> elmNames = new List<string>();
               foreach (var elt in el.Elements)
               {
+                string name = elt.Key;
                 if (elt.Value != null)
-                  elm.AddRange(elt.Value);
+                {
+                  foreach (Element ell in elt.Value)
+                  { 
+                    elmNames.Add(name);
+                    elm.Add(ell);
+                  }
+                }
+                else
+                {
+                  elmNames.Add(name);
+                  elm.Add(null);
+                }
               }
-              gridSubElements.DataSource = ElementsTable(elm);
+              gridSubElements.DataSource = ElementsTable(elm, elmNames);
             }
           }
 
@@ -108,9 +116,11 @@ namespace BPMN.View
       }
     }
 
-    private DataTable ElementsTable(IEnumerable<Element> elements)
+    private DataTable ElementsTable(IEnumerable<Element> elements, List<string> elementNames)
     {
       DataTable table = new DataTable();
+      if (elementNames != null)
+        table.Columns.Add("ElementName", typeof(string));
       table.Columns.Add("Name", typeof(string));
       table.Columns.Add("TypeName", typeof(string));
       table.Columns.Add("ID", typeof(string));
@@ -119,17 +129,25 @@ namespace BPMN.View
       if (elements == null) 
         return null;
 
+      int i = 0;
       table.BeginLoadData();
       foreach (Element el in elements)
       {
-        if (el.TypeName.Contains("BPMN")) continue;
+        if (elementNames == null && el != null &&
+          el.TypeName.Contains("BPMN")) continue;
+
         DataRow row = table.NewRow();
-        if (el.Attributes.ContainsKey("name"))
-          row["Name"] = el.Attributes["name"];
-        row["TypeName"] = el.TypeName;
-        if (el.Attributes.ContainsKey("id"))
-          row["ID"] = el.Attributes["id"];
-        row["ParentID"] = el.ParentID;
+        if (elementNames != null)
+          row["ElementName"] = elementNames[i++];
+        if (el != null)
+        {
+          if (el.Attributes.ContainsKey("name"))
+            row["Name"] = el.Attributes["name"];
+          row["TypeName"] = el.TypeName;
+          if (el.Attributes.ContainsKey("id"))
+            row["ID"] = el.Attributes["id"];
+          row["ParentID"] = el.ParentID;
+        }
         table.Rows.Add(row);
       }
       table.EndLoadData();
