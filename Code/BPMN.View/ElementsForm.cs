@@ -53,67 +53,64 @@ namespace BPMN.View
 
     private void gridElements_SelectionChanged(object sender, EventArgs e)
     {
-      ViewElement(true);
-    }
-
-    private void ViewElement(bool primary) 
-    {
       gridSubElements.DataSource = null;
       gridAttributes.DataSource = null;
-      if(primary) gridProperties.DataSource = null;
+      gridProperties.DataSource = null;
 
       if (gridElements.SelectedRows.Count > 0)
       {
         string id = gridElements.SelectedRows[0].Cells["ID"].Value.ToString();
         Element el = ElementByID(id);
-        if (el != null)
-        {
-          if (primary)
-          {
-            if (el.Elements != null)
-            {
-              List<Element> elm = new List<Element>();
-              List<string> elmNames = new List<string>();
-              foreach (var elt in el.Elements)
-              {
-                string name = elt.Key;
-                if (elt.Value != null)
-                {
-                  foreach (Element ell in elt.Value)
-                  { 
-                    elmNames.Add(name);
-                    elm.Add(ell);
-                  }
-                }
-                else
-                {
-                  elmNames.Add(name);
-                  elm.Add(null);
-                }
-              }
-              gridSubElements.DataSource = ElementsTable(elm, elmNames);
-            }
-          }
-
-          if (el.Properties != null)
-          {
-            Dictionary<string, string> props = new Dictionary<string, string>();
-            foreach (var prop in el.Properties)
-            {
-              string propList = "";
-              foreach (string pr in prop.Value)
-              {
-                if (!string.IsNullOrEmpty(propList))
-                  propList += ", ";
-                propList += pr;
-              }
-              props.Add(prop.Key, propList);
-            }
-          }
-
-          gridAttributes.DataSource = StringTable(el.Attributes);
-        }
+        if (el != null) ViewElement(el);
       }
+    }
+
+    private void ViewElement(Element el)
+    {
+      if (el == null) return;
+
+      if (el.Elements != null)
+      {
+        List<Element> elm = new List<Element>();
+        List<string> elmNames = new List<string>();
+        foreach (var elt in el.Elements)
+        {
+          string name = elt.Key;
+          if (elt.Value != null)
+          {
+            foreach (Element ell in elt.Value)
+            {
+              elmNames.Add(name);
+              elm.Add(ell);
+            }
+          }
+          else
+          {
+            elmNames.Add(name);
+            elm.Add(null);
+          }
+        }
+        gridSubElements.DataSource = ElementsTable(elm, elmNames);
+      }
+
+      if (el.Properties != null)
+      {
+        Dictionary<string, string> props = new Dictionary<string, string>();
+        foreach (var prop in el.Properties)
+        {
+          string propList = "";
+          foreach (string pr in prop.Value)
+          {
+            if (!string.IsNullOrEmpty(propList))
+              propList += ", ";
+            propList += pr;
+          }
+          props.Add(prop.Key, propList);
+        }
+        gridProperties.DataSource = StringTable(props);
+      }
+
+      gridAttributes.DataSource = StringTable(el.Attributes);
     }
 
     private DataTable ElementsTable(IEnumerable<Element> elements, List<string> elementNames)
