@@ -35,3 +35,4 @@ Below is the result:
 
 ![bzinchenko](Images/B.2.0.png)
 
+BPMN View was created with support from [CaseAgile LLC](http://caseagile.com/), an innovative software and business service company specializing in integration of platforms and environments for enterprise modeling. Find more on official company page: [http://caseagile.com/](http://caseagile.com/)
