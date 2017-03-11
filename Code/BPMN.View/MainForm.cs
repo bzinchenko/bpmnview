@@ -195,8 +195,8 @@ namespace BPMN.View
     {
       if (diagramImage == null) return;
 
-      int targetWidth = (int)(zoomRatio * diagramImage.Width);
-      int targetHeight = (int)(zoomRatio * diagramImage.Height);
+      int targetWidth = (int)(ratio * diagramImage.Width);
+      int targetHeight = (int)(ratio * diagramImage.Height);
 
       Bitmap bmp = ResizeImage(diagramImage, targetWidth, targetHeight); 
       pictureDiagram.Image = bmp;

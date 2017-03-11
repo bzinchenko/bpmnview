@@ -28,8 +28,8 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
       System.Windows.Forms.Button buttonTable;
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
       this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
       this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
       this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -50,21 +50,32 @@
       this.buttonOpen = new System.Windows.Forms.Button();
       this.pictureLogo = new System.Windows.Forms.PictureBox();
       this.printDialog1 = new System.Windows.Forms.PrintDialog();
-      this.pictureDiagram = new System.Windows.Forms.PictureBox();
-      this.panelImage = new System.Windows.Forms.Panel();
       this.printDocument1 = new System.Drawing.Printing.PrintDocument();
       this.panelTop = new System.Windows.Forms.Panel();
-      this.label1 = new System.Windows.Forms.Label();
       this.comboDiagram = new System.Windows.Forms.ComboBox();
+      this.label1 = new System.Windows.Forms.Label();
+      this.panelImage = new System.Windows.Forms.Panel();
+      this.pictureDiagram = new System.Windows.Forms.PictureBox();
       buttonTable = new System.Windows.Forms.Button();
       this.panelLeft.SuspendLayout();
       this.groupBox2.SuspendLayout();
       this.groupBox1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureLogo)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureDiagram)).BeginInit();
-      this.panelImage.SuspendLayout();
       this.panelTop.SuspendLayout();
+      this.panelImage.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureDiagram)).BeginInit();
       this.SuspendLayout();
+      // 
+      // buttonTable
+      // 
+      buttonTable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      buttonTable.Location = new System.Drawing.Point(571, 9);
+      buttonTable.Name = "buttonTable";
+      buttonTable.Size = new System.Drawing.Size(99, 23);
+      buttonTable.TabIndex = 3;
+      buttonTable.Text = "View Elements..";
+      buttonTable.UseVisualStyleBackColor = true;
+      buttonTable.Click += new System.EventHandler(this.buttonTable_Click);
       // 
       // openFileDialog1
       // 
@@ -72,9 +83,9 @@
       // 
       // statusStrip1
       // 
-      this.statusStrip1.Location = new System.Drawing.Point(0, 533);
+      this.statusStrip1.Location = new System.Drawing.Point(0, 429);
       this.statusStrip1.Name = "statusStrip1";
-      this.statusStrip1.Size = new System.Drawing.Size(889, 22);
+      this.statusStrip1.Size = new System.Drawing.Size(783, 22);
       this.statusStrip1.TabIndex = 0;
       this.statusStrip1.Text = "statusStrip1";
       // 
@@ -91,13 +102,13 @@
       this.panelLeft.Location = new System.Drawing.Point(0, 0);
       this.panelLeft.Name = "panelLeft";
       this.panelLeft.Padding = new System.Windows.Forms.Padding(3);
-      this.panelLeft.Size = new System.Drawing.Size(101, 533);
+      this.panelLeft.Size = new System.Drawing.Size(101, 429);
       this.panelLeft.TabIndex = 1;
       // 
       // buttonAbout
       // 
       this.buttonAbout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.buttonAbout.Location = new System.Drawing.Point(16, 490);
+      this.buttonAbout.Location = new System.Drawing.Point(16, 386);
       this.buttonAbout.Name = "buttonAbout";
       this.buttonAbout.Size = new System.Drawing.Size(75, 23);
       this.buttonAbout.TabIndex = 5;
@@ -111,7 +122,7 @@
       this.groupBox2.Controls.Add(this.buttonZoomReset);
       this.groupBox2.Controls.Add(this.buttonZoomOut);
       this.groupBox2.Controls.Add(this.buttonZoomIn);
-      this.groupBox2.Location = new System.Drawing.Point(16, 394);
+      this.groupBox2.Location = new System.Drawing.Point(16, 290);
       this.groupBox2.Name = "groupBox2";
       this.groupBox2.Size = new System.Drawing.Size(75, 79);
       this.groupBox2.TabIndex = 4;
@@ -259,25 +270,6 @@
       // 
       this.printDialog1.UseEXDialog = true;
       // 
-      // pictureDiagram
-      // 
-      this.pictureDiagram.Location = new System.Drawing.Point(3, 3);
-      this.pictureDiagram.Name = "pictureDiagram";
-      this.pictureDiagram.Size = new System.Drawing.Size(388, 154);
-      this.pictureDiagram.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-      this.pictureDiagram.TabIndex = 2;
-      this.pictureDiagram.TabStop = false;
-      // 
-      // panelImage
-      // 
-      this.panelImage.AutoScroll = true;
-      this.panelImage.Controls.Add(this.pictureDiagram);
-      this.panelImage.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.panelImage.Location = new System.Drawing.Point(101, 0);
-      this.panelImage.Name = "panelImage";
-      this.panelImage.Size = new System.Drawing.Size(788, 533);
-      this.panelImage.TabIndex = 3;
-      // 
       // printDocument1
       // 
       this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
@@ -290,17 +282,8 @@
       this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
       this.panelTop.Location = new System.Drawing.Point(101, 0);
       this.panelTop.Name = "panelTop";
-      this.panelTop.Size = new System.Drawing.Size(788, 41);
+      this.panelTop.Size = new System.Drawing.Size(682, 41);
       this.panelTop.TabIndex = 4;
-      // 
-      // label1
-      // 
-      this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(12, 14);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(82, 13);
-      this.label1.TabIndex = 0;
-      this.label1.Text = "Select Diagram:";
       // 
       // comboDiagram
       // 
@@ -312,25 +295,42 @@
       this.comboDiagram.TabIndex = 1;
       this.comboDiagram.SelectedIndexChanged += new System.EventHandler(this.comboDiagram_SelectedIndexChanged);
       // 
-      // buttonTable
+      // label1
       // 
-      buttonTable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-      buttonTable.Location = new System.Drawing.Point(677, 9);
-      buttonTable.Name = "buttonTable";
-      buttonTable.Size = new System.Drawing.Size(99, 23);
-      buttonTable.TabIndex = 3;
-      buttonTable.Text = "View Elements..";
-      buttonTable.UseVisualStyleBackColor = true;
-      buttonTable.Click += new System.EventHandler(this.buttonTable_Click);
+      this.label1.AutoSize = true;
+      this.label1.Location = new System.Drawing.Point(12, 14);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(82, 13);
+      this.label1.TabIndex = 0;
+      this.label1.Text = "Select Diagram:";
+      // 
+      // panelImage
+      // 
+      this.panelImage.AutoScroll = true;
+      this.panelImage.Controls.Add(this.pictureDiagram);
+      this.panelImage.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.panelImage.Location = new System.Drawing.Point(101, 41);
+      this.panelImage.Name = "panelImage";
+      this.panelImage.Size = new System.Drawing.Size(682, 388);
+      this.panelImage.TabIndex = 5;
+      // 
+      // pictureDiagram
+      // 
+      this.pictureDiagram.Location = new System.Drawing.Point(0, 0);
+      this.pictureDiagram.Name = "pictureDiagram";
+      this.pictureDiagram.Size = new System.Drawing.Size(388, 154);
+      this.pictureDiagram.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+      this.pictureDiagram.TabIndex = 3;
+      this.pictureDiagram.TabStop = false;
       // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.SystemColors.Window;
-      this.ClientSize = new System.Drawing.Size(889, 555);
-      this.Controls.Add(this.panelTop);
+      this.ClientSize = new System.Drawing.Size(783, 451);
       this.Controls.Add(this.panelImage);
+      this.Controls.Add(this.panelTop);
       this.Controls.Add(this.panelLeft);
       this.Controls.Add(this.statusStrip1);
       this.Name = "MainForm";
@@ -340,11 +340,11 @@
       this.groupBox2.ResumeLayout(false);
       this.groupBox1.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.pictureLogo)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureDiagram)).EndInit();
-      this.panelImage.ResumeLayout(false);
-      this.panelImage.PerformLayout();
       this.panelTop.ResumeLayout(false);
       this.panelTop.PerformLayout();
+      this.panelImage.ResumeLayout(false);
+      this.panelImage.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureDiagram)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -356,7 +356,6 @@
     private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     private System.Windows.Forms.StatusStrip statusStrip1;
     private System.Windows.Forms.Panel panelLeft;
-    private System.Windows.Forms.PictureBox pictureDiagram;
     private System.Windows.Forms.PictureBox pictureLogo;
     private System.Windows.Forms.PrintDialog printDialog1;
     private System.Windows.Forms.Button buttonOpen;
@@ -373,11 +372,12 @@
     private System.Windows.Forms.Button buttonZoomReset;
     private System.Windows.Forms.Button buttonZoomOut;
     private System.Windows.Forms.Button buttonAbout;
-    private System.Windows.Forms.Panel panelImage;
     private System.Drawing.Printing.PrintDocument printDocument1;
     private System.Windows.Forms.Panel panelTop;
     private System.Windows.Forms.ComboBox comboDiagram;
     private System.Windows.Forms.Label label1;
+    private System.Windows.Forms.Panel panelImage;
+    private System.Windows.Forms.PictureBox pictureDiagram;
   }
 }
 
