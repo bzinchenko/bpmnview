@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("BPMN Model Interchange Working Group")]
 [assembly: AssemblyProduct("BPMN View")]
-[assembly: AssemblyCopyright("Copyright © Boris Zinchenko, 2016")]
+[assembly: AssemblyCopyright("Copyright © Boris Zinchenko, 2017")]
 [assembly: AssemblyTrademark("BPMN Model Interchange Working Group")]
 [assembly: AssemblyCulture("")]
 

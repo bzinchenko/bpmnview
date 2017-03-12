@@ -1,8 +1,8 @@
 ﻿// 
 // The MIT License (MIT)
 //
-// Copyright (c) 2016 Boris Zinchenko
-// mail: boris.zinchenko@caseagile.com
+// Copyright (c) 2017 Boris Zinchenko
+// mail: info@caseagile.com
 // web: http://www.caseagile.com
 // code: https://github.com/bzinchenko/bpmnview
 //
