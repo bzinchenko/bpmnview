@@ -333,6 +333,7 @@
       this.Controls.Add(this.panelTop);
       this.Controls.Add(this.panelLeft);
       this.Controls.Add(this.statusStrip1);
+      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "MainForm";
       this.Text = "BPMN View";
       this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
