@@ -337,6 +337,7 @@
       this.Name = "MainForm";
       this.Text = "BPMN View";
       this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+      this.Load += new System.EventHandler(this.MainForm_Load);
       this.panelLeft.ResumeLayout(false);
       this.groupBox2.ResumeLayout(false);
       this.groupBox1.ResumeLayout(false);

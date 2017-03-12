@@ -102,6 +102,7 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Association.cs" />
     <Compile Include="ElementsForm.cs">
       <SubType>Form</SubType>
     </Compile>

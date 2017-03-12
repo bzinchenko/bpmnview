@@ -48,6 +48,30 @@ namespace BPMN.View
       InitializeComponent();
     }
 
+    private void MainForm_Load(object sender, EventArgs e)
+    {
+      string[] args = Environment.GetCommandLineArgs();
+      if (args.Length > 1) OpenFile(args[1]);
+    }
+
+    private void OpenFile(string file)
+    {
+      try
+      {
+        model = BPMN.Model.Read(file);
+        foreach (Diagram dia in model.Diagrams)
+          comboDiagram.Items.Add(dia.Name);
+        if (comboDiagram.Items.Count > 0)
+          comboDiagram.SelectedIndex = 0;
+        this.Text = "BPMN View - " + file;
+      }
+      catch (Exception ex)
+      {
+        this.Text = "BPMN View";
+        MessageBox.Show("Error opening file!");
+      }
+    }
+
     private void buttonOpen_Click(object sender, EventArgs e)
     {
       openFileDialog1.FileName = "";
@@ -58,21 +82,7 @@ namespace BPMN.View
       if (result == DialogResult.OK)
       {
         comboDiagram.Items.Clear();
-        string file = openFileDialog1.FileName;
-        try
-        {
-          model = BPMN.Model.Read(file);
-          foreach (Diagram dia in model.Diagrams)
-            comboDiagram.Items.Add(dia.Name);
-          if (comboDiagram.Items.Count > 0)
-            comboDiagram.SelectedIndex = 0;
-          this.Text = "BPMN View - " + file;
-        }
-        catch (Exception ex)
-        {
-          this.Text = "BPMN View";
-          MessageBox.Show("Error opening file!");
-        }
+        OpenFile(openFileDialog1.FileName);
       }
     }
 

@@ -39,6 +39,9 @@ namespace BPMN.View
     [STAThread]
     static void Main()
     {
+      //if (!Association.IsAssociated(".bpmn"))
+      Association.AddExtension(".bpmn", "BPMN Viever", Application.ExecutablePath, "BPMN File");
+      
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
       Application.Run(new MainForm());
