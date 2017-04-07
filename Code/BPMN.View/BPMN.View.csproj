@@ -29,7 +29,7 @@
     <ProductName>BPMN View</ProductName>
     <PublisherName>Boris Zinchenko</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -84,9 +84,9 @@
     <ApplicationIcon>BPMN.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BPMN.Sharp, Version=1.0.4.15314, Culture=neutral, PublicKeyToken=e11a3c302b993b1a, processorArchitecture=MSIL">
+    <Reference Include="BPMN.Sharp, Version=1.0.5.10984, Culture=neutral, PublicKeyToken=e11a3c302b993b1a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\BPMN.Sharp.1.0.4\lib\net20\BPMN.Sharp.dll</HintPath>
+      <HintPath>..\packages\BPMN.Sharp.1.0.5\lib\net20\BPMN.Sharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -115,6 +115,12 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModelForm.designer.cs">
+      <DependentUpon>ModelForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AboutBox.resx">
@@ -125,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelForm.resx">
+      <DependentUpon>ModelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

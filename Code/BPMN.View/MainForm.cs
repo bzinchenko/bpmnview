@@ -42,6 +42,7 @@ namespace BPMN.View
     private Model model;
     private Image diagramImage;
     private double zoomRatio;
+    private float scale = 2.0f;
 
     public MainForm()
     {
@@ -91,7 +92,7 @@ namespace BPMN.View
       if (model != null)
       {
         int idx = comboDiagram.SelectedIndex;
-        if(idx >= 0) diagramImage = model.GetImage(idx, 2.0f);
+        if(idx >= 0) diagramImage = model.GetImage(idx, scale);
         ZoomReset();
       }
     }
@@ -169,14 +170,14 @@ namespace BPMN.View
 
     private void buttonZoomIn_Click(object sender, EventArgs e)
     {
-      zoomRatio *= 1.1;
-      Zoom(zoomRatio);
+      double ratio = 1.1 * zoomRatio;
+      Zoom(ratio);
     }
 
     private void buttonZoomOut_Click(object sender, EventArgs e)
     {
-      zoomRatio *= 0.9;
-      Zoom(zoomRatio);
+      double ratio = 0.9 * zoomRatio;
+      Zoom(ratio);
     }
 
     private void buttonZoomReset_Click(object sender, EventArgs e)
@@ -197,8 +198,8 @@ namespace BPMN.View
       double zoomH = (double)(panelImage.Width - 20) / diagramImage.Width;
       double zoomV = (double)(panelImage.Height - 20) / diagramImage.Height;
 
-      zoomRatio = Math.Min(zoomH, zoomV);
-      Zoom(zoomRatio);
+      double ratio = Math.Min(zoomH, zoomV);
+      Zoom(ratio);
     }
     
     private void Zoom(double ratio)
@@ -210,6 +211,8 @@ namespace BPMN.View
 
       Bitmap bmp = ResizeImage(diagramImage, targetWidth, targetHeight); 
       pictureDiagram.Image = bmp;
+
+      zoomRatio = ratio;
     }
     
     private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
@@ -253,8 +256,30 @@ namespace BPMN.View
 
     private void buttonTable_Click(object sender, EventArgs e)
     {
-      ElementsForm form = new ElementsForm(model);
+      //ElementsForm form = new ElementsForm(model);
+      ModelForm form = new ModelForm(model);
       form.ShowDialog();
+    }
+
+    private void pictureDiagram_Click(object sender, EventArgs e)
+    {
+      MouseEventArgs me = (MouseEventArgs)e;
+      Point pt = me.Location;
+      pt.X = (int)(pt.X / zoomRatio / scale);
+      pt.Y = (int)(pt.Y / zoomRatio / scale);
+
+      if (model != null)
+      {
+        int idx = comboDiagram.SelectedIndex;
+        if (idx >= 0)
+        {
+          Diagram dia = model.Diagrams[idx];
+          Shape shape = BPMN.Geometry.ShapeAtPoint(dia, pt);
+          Shape contain = BPMN.Geometry.Container(dia, shape);
+          List<Shape> neigh = BPMN.Geometry.Neighbors(dia, shape);
+          List<Edge> edges = BPMN.Geometry.EdgesAtPoint(dia, pt, 5);
+        }
+      }
     }
 
   }

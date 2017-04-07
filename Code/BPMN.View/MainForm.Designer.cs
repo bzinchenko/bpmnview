@@ -322,6 +322,7 @@
       this.pictureDiagram.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
       this.pictureDiagram.TabIndex = 3;
       this.pictureDiagram.TabStop = false;
+      this.pictureDiagram.Click += new System.EventHandler(this.pictureDiagram_Click);
       // 
       // MainForm
       // 
