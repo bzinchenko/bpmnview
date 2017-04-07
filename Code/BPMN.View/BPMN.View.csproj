@@ -103,6 +103,12 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Association.cs" />
+    <Compile Include="ElementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ElementControl.designer.cs">
+      <DependentUpon>ElementControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ElementsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ElementControl.resx">
+      <DependentUpon>ElementControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ElementsForm.resx">
       <DependentUpon>ElementsForm.cs</DependentUpon>
