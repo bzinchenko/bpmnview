@@ -38,13 +38,7 @@ namespace BPMN.View
     {
       if (element == null) return null;
 
-      string name = ElementName(element);
-      if (string.IsNullOrEmpty(name))
-        name = ElementID(element);
-      if (string.IsNullOrEmpty(name))
-        name = element.TypeName;
-      if (string.IsNullOrEmpty(name))
-        name = "(unnamed)";
+      string name = ElementTitle(element);
 
       TreeNode node = null;
       if (parent == null)
@@ -65,6 +59,18 @@ namespace BPMN.View
         }
       }
       return node;
+    }
+
+    public static string ElementTitle(Element element)
+    {
+      string name = ElementName(element);
+      if (string.IsNullOrEmpty(name))
+        name = ElementID(element);
+      if (string.IsNullOrEmpty(name))
+        name = element.TypeName;
+      if (string.IsNullOrEmpty(name))
+        name = "(unnamed)";
+      return name;
     }
 
     public static string ElementName(Element element)

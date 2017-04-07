@@ -56,6 +56,10 @@
       this.label1 = new System.Windows.Forms.Label();
       this.panelImage = new System.Windows.Forms.Panel();
       this.pictureDiagram = new System.Windows.Forms.PictureBox();
+      this.splitMain = new System.Windows.Forms.SplitContainer();
+      this.splitRight = new System.Windows.Forms.SplitContainer();
+      this.treeModel = new System.Windows.Forms.TreeView();
+      this.ctlElement = new BPMN.View.ElementControl();
       buttonTable = new System.Windows.Forms.Button();
       this.panelLeft.SuspendLayout();
       this.groupBox2.SuspendLayout();
@@ -64,12 +68,18 @@
       this.panelTop.SuspendLayout();
       this.panelImage.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureDiagram)).BeginInit();
+      this.splitMain.Panel1.SuspendLayout();
+      this.splitMain.Panel2.SuspendLayout();
+      this.splitMain.SuspendLayout();
+      this.splitRight.Panel1.SuspendLayout();
+      this.splitRight.Panel2.SuspendLayout();
+      this.splitRight.SuspendLayout();
       this.SuspendLayout();
       // 
       // buttonTable
       // 
       buttonTable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-      buttonTable.Location = new System.Drawing.Point(571, 9);
+      buttonTable.Location = new System.Drawing.Point(621, 9);
       buttonTable.Name = "buttonTable";
       buttonTable.Size = new System.Drawing.Size(99, 23);
       buttonTable.TabIndex = 3;
@@ -83,9 +93,9 @@
       // 
       // statusStrip1
       // 
-      this.statusStrip1.Location = new System.Drawing.Point(0, 429);
+      this.statusStrip1.Location = new System.Drawing.Point(0, 501);
       this.statusStrip1.Name = "statusStrip1";
-      this.statusStrip1.Size = new System.Drawing.Size(783, 22);
+      this.statusStrip1.Size = new System.Drawing.Size(833, 22);
       this.statusStrip1.TabIndex = 0;
       this.statusStrip1.Text = "statusStrip1";
       // 
@@ -102,13 +112,13 @@
       this.panelLeft.Location = new System.Drawing.Point(0, 0);
       this.panelLeft.Name = "panelLeft";
       this.panelLeft.Padding = new System.Windows.Forms.Padding(3);
-      this.panelLeft.Size = new System.Drawing.Size(101, 429);
+      this.panelLeft.Size = new System.Drawing.Size(101, 501);
       this.panelLeft.TabIndex = 1;
       // 
       // buttonAbout
       // 
       this.buttonAbout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.buttonAbout.Location = new System.Drawing.Point(16, 386);
+      this.buttonAbout.Location = new System.Drawing.Point(16, 458);
       this.buttonAbout.Name = "buttonAbout";
       this.buttonAbout.Size = new System.Drawing.Size(75, 23);
       this.buttonAbout.TabIndex = 5;
@@ -122,7 +132,7 @@
       this.groupBox2.Controls.Add(this.buttonZoomReset);
       this.groupBox2.Controls.Add(this.buttonZoomOut);
       this.groupBox2.Controls.Add(this.buttonZoomIn);
-      this.groupBox2.Location = new System.Drawing.Point(16, 290);
+      this.groupBox2.Location = new System.Drawing.Point(16, 362);
       this.groupBox2.Name = "groupBox2";
       this.groupBox2.Size = new System.Drawing.Size(75, 79);
       this.groupBox2.TabIndex = 4;
@@ -282,7 +292,7 @@
       this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
       this.panelTop.Location = new System.Drawing.Point(101, 0);
       this.panelTop.Name = "panelTop";
-      this.panelTop.Size = new System.Drawing.Size(682, 41);
+      this.panelTop.Size = new System.Drawing.Size(732, 41);
       this.panelTop.TabIndex = 4;
       // 
       // comboDiagram
@@ -309,9 +319,9 @@
       this.panelImage.AutoScroll = true;
       this.panelImage.Controls.Add(this.pictureDiagram);
       this.panelImage.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.panelImage.Location = new System.Drawing.Point(101, 41);
+      this.panelImage.Location = new System.Drawing.Point(0, 0);
       this.panelImage.Name = "panelImage";
-      this.panelImage.Size = new System.Drawing.Size(682, 388);
+      this.panelImage.Size = new System.Drawing.Size(405, 460);
       this.panelImage.TabIndex = 5;
       // 
       // pictureDiagram
@@ -324,13 +334,68 @@
       this.pictureDiagram.TabStop = false;
       this.pictureDiagram.Click += new System.EventHandler(this.pictureDiagram_Click);
       // 
+      // splitMain
+      // 
+      this.splitMain.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.splitMain.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+      this.splitMain.Location = new System.Drawing.Point(101, 41);
+      this.splitMain.Name = "splitMain";
+      // 
+      // splitMain.Panel1
+      // 
+      this.splitMain.Panel1.Controls.Add(this.panelImage);
+      // 
+      // splitMain.Panel2
+      // 
+      this.splitMain.Panel2.Controls.Add(this.splitRight);
+      this.splitMain.Size = new System.Drawing.Size(732, 460);
+      this.splitMain.SplitterDistance = 405;
+      this.splitMain.TabIndex = 6;
+      // 
+      // splitRight
+      // 
+      this.splitRight.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.splitRight.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+      this.splitRight.Location = new System.Drawing.Point(0, 0);
+      this.splitRight.Name = "splitRight";
+      this.splitRight.Orientation = System.Windows.Forms.Orientation.Horizontal;
+      // 
+      // splitRight.Panel1
+      // 
+      this.splitRight.Panel1.Controls.Add(this.treeModel);
+      // 
+      // splitRight.Panel2
+      // 
+      this.splitRight.Panel2.Controls.Add(this.ctlElement);
+      this.splitRight.Size = new System.Drawing.Size(323, 460);
+      this.splitRight.SplitterDistance = 101;
+      this.splitRight.TabIndex = 0;
+      // 
+      // treeModel
+      // 
+      this.treeModel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+      this.treeModel.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.treeModel.Location = new System.Drawing.Point(0, 0);
+      this.treeModel.Name = "treeModel";
+      this.treeModel.Size = new System.Drawing.Size(323, 101);
+      this.treeModel.TabIndex = 0;
+      this.treeModel.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeModel_AfterSelect);
+      // 
+      // ctlElement
+      // 
+      this.ctlElement.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.ctlElement.Location = new System.Drawing.Point(0, 0);
+      this.ctlElement.Name = "ctlElement";
+      this.ctlElement.Size = new System.Drawing.Size(323, 355);
+      this.ctlElement.TabIndex = 0;
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.SystemColors.Window;
-      this.ClientSize = new System.Drawing.Size(783, 451);
-      this.Controls.Add(this.panelImage);
+      this.ClientSize = new System.Drawing.Size(833, 523);
+      this.Controls.Add(this.splitMain);
       this.Controls.Add(this.panelTop);
       this.Controls.Add(this.panelLeft);
       this.Controls.Add(this.statusStrip1);
@@ -348,6 +413,12 @@
       this.panelImage.ResumeLayout(false);
       this.panelImage.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureDiagram)).EndInit();
+      this.splitMain.Panel1.ResumeLayout(false);
+      this.splitMain.Panel2.ResumeLayout(false);
+      this.splitMain.ResumeLayout(false);
+      this.splitRight.Panel1.ResumeLayout(false);
+      this.splitRight.Panel2.ResumeLayout(false);
+      this.splitRight.ResumeLayout(false);
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -381,6 +452,10 @@
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.Panel panelImage;
     private System.Windows.Forms.PictureBox pictureDiagram;
+    private System.Windows.Forms.SplitContainer splitMain;
+    private System.Windows.Forms.SplitContainer splitRight;
+    private System.Windows.Forms.TreeView treeModel;
+    private ElementControl ctlElement;
   }
 }
 

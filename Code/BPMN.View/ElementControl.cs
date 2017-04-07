@@ -58,7 +58,10 @@ namespace BPMN.View
 
     public void ViewElement(Element el)
     {
+      labelElement.Text = "";
       if (el == null) return;
+
+      labelElement.Text = ModelTree.ElementTitle(el);
 
       if (el.Elements != null)
       {

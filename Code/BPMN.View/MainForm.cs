@@ -47,6 +47,8 @@ namespace BPMN.View
     public MainForm()
     {
       InitializeComponent();
+      splitMain.Panel2Collapsed = true;
+      ctlElement.Visible = false;
     }
 
     private void MainForm_Load(object sender, EventArgs e)
@@ -59,11 +61,19 @@ namespace BPMN.View
     {
       try
       {
+        splitMain.Panel2Collapsed = true;
+
         model = BPMN.Model.Read(file);
+        TreeNode node = ModelTree.AddElementToTree(treeModel, null, model.Root);
+        if (node != null) node.Expand();
+        ctlElement.Init(model);
+
         foreach (Diagram dia in model.Diagrams)
           comboDiagram.Items.Add(dia.Name);
         if (comboDiagram.Items.Count > 0)
           comboDiagram.SelectedIndex = 0;
+        
+        splitMain.Panel2Collapsed = false;
         this.Text = "BPMN View - " + file;
       }
       catch (Exception ex)
@@ -274,12 +284,25 @@ namespace BPMN.View
         if (idx >= 0)
         {
           Diagram dia = model.Diagrams[idx];
-          Shape shape = BPMN.Geometry.ShapeAtPoint(dia, pt);
-          Shape contain = BPMN.Geometry.Container(dia, shape);
-          List<Shape> neigh = BPMN.Geometry.Neighbors(dia, shape);
-          List<Edge> edges = BPMN.Geometry.EdgesAtPoint(dia, pt, 5);
+          //Shape shape = BPMN.Geometry.ShapeAtPoint(dia, pt);
+          //Shape contain = BPMN.Geometry.Container(dia, shape);
+          //List<Shape> neigh = BPMN.Geometry.Neighbors(dia, shape);
+          //List<Edge> edges = BPMN.Geometry.EdgesAtPoint(dia, pt, 5);
         }
       }
+    }
+
+    private void treeModel_AfterSelect(object sender, TreeViewEventArgs e)
+    {
+      ctlElement.Cleanup();
+      TreeNode node = treeModel.SelectedNode;
+      if (node != null && node.Tag != null)
+      {
+        Element elm = node.Tag as Element;
+        ctlElement.ViewElement(elm);
+        ctlElement.Visible = true;
+      }
+      else ctlElement.Visible = false;
     }
 
   }
