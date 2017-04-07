@@ -87,5 +87,15 @@ namespace BPMN.View
       else return "";
     }
 
+    public static Element ElementByID(Model model, string id)
+    {
+      if (model != null && !string.IsNullOrEmpty(id))
+      {
+        foreach (Element element in model.Elements)
+          if (element.Attributes.ContainsKey("id") &&
+            id.Equals(element.Attributes["id"])) return element;
+      }
+      return null;
+    }
   }
 }

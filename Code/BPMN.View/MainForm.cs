@@ -67,13 +67,13 @@ namespace BPMN.View
         TreeNode node = ModelTree.AddElementToTree(treeModel, null, model.Root);
         if (node != null) node.Expand();
         ctlElement.Init(model);
+        splitMain.Panel2Collapsed = false;
 
         foreach (Diagram dia in model.Diagrams)
           comboDiagram.Items.Add(dia.Name);
         if (comboDiagram.Items.Count > 0)
           comboDiagram.SelectedIndex = 0;
         
-        splitMain.Panel2Collapsed = false;
         this.Text = "BPMN View - " + file;
       }
       catch (Exception ex)
@@ -283,11 +283,28 @@ namespace BPMN.View
         int idx = comboDiagram.SelectedIndex;
         if (idx >= 0)
         {
+          string id = null;
           Diagram dia = model.Diagrams[idx];
-          //Shape shape = BPMN.Geometry.ShapeAtPoint(dia, pt);
-          //Shape contain = BPMN.Geometry.Container(dia, shape);
-          //List<Shape> neigh = BPMN.Geometry.Neighbors(dia, shape);
-          //List<Edge> edges = BPMN.Geometry.EdgesAtPoint(dia, pt, 5);
+          
+          Shape shape = BPMN.Geometry.ShapeAtPoint(dia, pt);
+          if (shape != null)
+          {
+            id = shape.ElementRef;
+          }
+          else
+          {
+            List<Edge> edges = BPMN.Geometry.EdgesAtPoint(dia, pt, 1);
+            if (edges != null && edges.Count > 0)
+              id = edges[0].ElementRef;
+          }
+
+          Element element = ModelTree.ElementByID(model, id);
+          if (element != null)
+          {
+            ctlElement.ViewElement(element);
+            ctlElement.Visible = true;
+          }
+          else ctlElement.Visible = false;
         }
       }
     }

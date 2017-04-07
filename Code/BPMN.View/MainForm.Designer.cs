@@ -85,6 +85,7 @@
       buttonTable.TabIndex = 3;
       buttonTable.Text = "View Elements..";
       buttonTable.UseVisualStyleBackColor = true;
+      buttonTable.Visible = false;
       buttonTable.Click += new System.EventHandler(this.buttonTable_Click);
       // 
       // openFileDialog1
