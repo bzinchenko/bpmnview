@@ -103,6 +103,7 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Association.cs" />
+    <Compile Include="ModelTree.cs" />
     <Compile Include="ElementControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

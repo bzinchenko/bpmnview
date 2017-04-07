@@ -27,40 +27,58 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
 namespace BPMN.View
 {
-  public partial class ModelForm : Form
+  static class ModelTree
   {
-    private Model model;
-
-    public ModelForm(Model mdl)
+    public static TreeNode AddElementToTree(TreeView tree, TreeNode parent, Element element)
     {
-      InitializeComponent();
-      ctlElement.Init(mdl);
-      model = mdl;
-    }
+      if (element == null) return null;
 
-    private void ElementsForm_Load(object sender, EventArgs e)
-    {
-      TreeNode node = ModelTree.AddElementToTree(treeElements, null, model.Root);
-      if (node != null) node.Expand();
-    }
+      string name = ElementName(element);
+      if (string.IsNullOrEmpty(name))
+        name = ElementID(element);
+      if (string.IsNullOrEmpty(name))
+        name = element.TypeName;
+      if (string.IsNullOrEmpty(name))
+        name = "(unnamed)";
 
-    private void treeElements_AfterSelect(object sender, TreeViewEventArgs e)
-    {
-      ctlElement.Cleanup();
-      TreeNode node = treeElements.SelectedNode;
-      if(node != null && node.Tag  != null) 
+      TreeNode node = null;
+      if (parent == null)
+        node = tree.Nodes.Add(name);
+      else node = parent.Nodes.Add(name);
+      node.Tag = element;
+
+      if (element.Elements != null && element.Elements.Values != null)
       {
-        Element elm = node.Tag as Element;
-        ctlElement.ViewElement(elm);
+        foreach (var entry in element.Elements)
+        {
+          if (entry.Value != null)
+          {
+            TreeNode nodeCategory = node.Nodes.Add(entry.Key);
+            foreach (Element subElement in entry.Value)
+              AddElementToTree(tree, nodeCategory, subElement);
+          }
+        }
       }
+      return node;
+    }
+
+    public static string ElementName(Element element)
+    {
+      if (element != null && element.Attributes.ContainsKey("name"))
+        return element.Attributes["name"];
+      else return "";
+    }
+
+    public static string ElementID(Element element)
+    {
+      if (element != null && element.Attributes.ContainsKey("id"))
+        return element.Attributes["id"];
+      else return "";
     }
 
   }
