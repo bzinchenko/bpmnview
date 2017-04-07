@@ -61,6 +61,22 @@ namespace BPMN.View
       return node;
     }
 
+    public static TreeNode NodeForElement(TreeNode node, Element element)
+    {
+      if (node != null)
+      {
+        if (node.Tag != null && 
+          node.Tag == element) return node;
+
+        foreach (TreeNode nd in node.Nodes)
+        {
+          TreeNode currNode = NodeForElement(nd, element);
+          if (currNode != null) return currNode;
+        }
+      }
+      return null;
+    }
+
     public static string ElementTitle(Element element)
     {
       string name = ElementName(element);

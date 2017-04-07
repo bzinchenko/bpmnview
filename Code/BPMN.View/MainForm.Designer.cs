@@ -376,6 +376,7 @@
       // 
       this.treeModel.BorderStyle = System.Windows.Forms.BorderStyle.None;
       this.treeModel.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.treeModel.HideSelection = false;
       this.treeModel.Location = new System.Drawing.Point(0, 0);
       this.treeModel.Name = "treeModel";
       this.treeModel.Size = new System.Drawing.Size(323, 101);

@@ -303,6 +303,9 @@ namespace BPMN.View
           {
             ctlElement.ViewElement(element);
             ctlElement.Visible = true;
+
+            TreeNode node = ModelTree.NodeForElement(treeModel.Nodes[0], element);
+            if (node != null) treeModel.SelectedNode = node;
           }
           else ctlElement.Visible = false;
         }
