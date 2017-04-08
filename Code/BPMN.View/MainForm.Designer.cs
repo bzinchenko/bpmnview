@@ -59,6 +59,7 @@
       this.splitMain = new System.Windows.Forms.SplitContainer();
       this.splitRight = new System.Windows.Forms.SplitContainer();
       this.treeModel = new System.Windows.Forms.TreeView();
+      this.panelSelected = new BPMN.View.SelectionBox();
       this.ctlElement = new BPMN.View.ElementControl();
       buttonTable = new System.Windows.Forms.Button();
       this.panelLeft.SuspendLayout();
@@ -318,6 +319,7 @@
       // panelImage
       // 
       this.panelImage.AutoScroll = true;
+      this.panelImage.Controls.Add(this.panelSelected);
       this.panelImage.Controls.Add(this.pictureDiagram);
       this.panelImage.Dock = System.Windows.Forms.DockStyle.Fill;
       this.panelImage.Location = new System.Drawing.Point(0, 0);
@@ -356,7 +358,6 @@
       // splitRight
       // 
       this.splitRight.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.splitRight.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
       this.splitRight.Location = new System.Drawing.Point(0, 0);
       this.splitRight.Name = "splitRight";
       this.splitRight.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -369,7 +370,7 @@
       // 
       this.splitRight.Panel2.Controls.Add(this.ctlElement);
       this.splitRight.Size = new System.Drawing.Size(323, 460);
-      this.splitRight.SplitterDistance = 101;
+      this.splitRight.SplitterDistance = 192;
       this.splitRight.TabIndex = 0;
       // 
       // treeModel
@@ -379,16 +380,24 @@
       this.treeModel.HideSelection = false;
       this.treeModel.Location = new System.Drawing.Point(0, 0);
       this.treeModel.Name = "treeModel";
-      this.treeModel.Size = new System.Drawing.Size(323, 101);
+      this.treeModel.Size = new System.Drawing.Size(323, 192);
       this.treeModel.TabIndex = 0;
       this.treeModel.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeModel_AfterSelect);
+      // 
+      // panelSelected
+      // 
+      this.panelSelected.Location = new System.Drawing.Point(49, 186);
+      this.panelSelected.Name = "panelSelected";
+      this.panelSelected.Size = new System.Drawing.Size(100, 57);
+      this.panelSelected.TabIndex = 5;
+      this.panelSelected.Click += new System.EventHandler(this.panelSelected_Click);
       // 
       // ctlElement
       // 
       this.ctlElement.Dock = System.Windows.Forms.DockStyle.Fill;
       this.ctlElement.Location = new System.Drawing.Point(0, 0);
       this.ctlElement.Name = "ctlElement";
-      this.ctlElement.Size = new System.Drawing.Size(323, 355);
+      this.ctlElement.Size = new System.Drawing.Size(323, 264);
       this.ctlElement.TabIndex = 0;
       // 
       // MainForm
@@ -458,6 +467,7 @@
     private System.Windows.Forms.SplitContainer splitRight;
     private System.Windows.Forms.TreeView treeModel;
     private ElementControl ctlElement;
+    private SelectionBox panelSelected;
   }
 }
 

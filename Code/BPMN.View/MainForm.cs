@@ -47,6 +47,7 @@ namespace BPMN.View
     public MainForm()
     {
       InitializeComponent();
+      panelSelected.Visible = false;
       splitMain.Panel2Collapsed = true;
       ctlElement.Visible = false;
     }
@@ -62,6 +63,7 @@ namespace BPMN.View
       try
       {
         splitMain.Panel2Collapsed = true;
+        treeModel.Nodes.Clear();
 
         model = BPMN.Model.Read(file);
         TreeNode node = ModelTree.AddElementToTree(treeModel, null, model.Root);
@@ -222,6 +224,8 @@ namespace BPMN.View
       Bitmap bmp = ResizeImage(diagramImage, targetWidth, targetHeight); 
       pictureDiagram.Image = bmp;
 
+      panelSelected.Visible = false;
+
       zoomRatio = ratio;
     }
     
@@ -278,6 +282,8 @@ namespace BPMN.View
       pt.X = (int)(pt.X / zoomRatio / scale);
       pt.Y = (int)(pt.Y / zoomRatio / scale);
 
+      panelSelected.Visible = false;
+
       if (model != null)
       {
         int idx = comboDiagram.SelectedIndex;
@@ -299,22 +305,39 @@ namespace BPMN.View
           }
 
           Element element = ModelTree.ElementByID(model, id);
-          if (element != null)
+          if (element != null && shape != null)
           {
             ctlElement.ViewElement(element);
             ctlElement.Visible = true;
 
             TreeNode node = ModelTree.NodeForElement(treeModel.Nodes[0], element);
             if (node != null) treeModel.SelectedNode = node;
+
+            Rectangle rect = shape.Bounds[0];
+            rect.X = (int)(rect.X * zoomRatio * scale);
+            rect.Y = (int)(rect.Y * zoomRatio * scale);
+            rect.Width = (int)(rect.Width * zoomRatio * scale) + 2;
+            rect.Height = (int)(rect.Height * zoomRatio * scale) + 2;
+
+            panelSelected.Location = rect.Location;
+            panelSelected.Size = rect.Size;
+            panelSelected.Visible = true;
           }
           else ctlElement.Visible = false;
         }
       }
     }
 
+    private void panelSelected_Click(object sender, EventArgs e)
+    {
+      pictureDiagram_Click(sender, e);
+    }
+
     private void treeModel_AfterSelect(object sender, TreeViewEventArgs e)
     {
       ctlElement.Cleanup();
+      panelSelected.Visible = false;
+
       TreeNode node = treeModel.SelectedNode;
       if (node != null && node.Tag != null)
       {
