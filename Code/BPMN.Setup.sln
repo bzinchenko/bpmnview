@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BPMN.View", "BPMN.View\BPMN.View.csproj", "{4229F825-61EC-4D72-8FBF-763D36F3D9B7}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "BPMN.Setup", "BPMN.Setup\BPMN.Setup.vdproj", "{C34AEAB5-8C86-4843-A026-00DE072B123D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4229F825-61EC-4D72-8FBF-763D36F3D9B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4229F825-61EC-4D72-8FBF-763D36F3D9B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4229F825-61EC-4D72-8FBF-763D36F3D9B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4229F825-61EC-4D72-8FBF-763D36F3D9B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C34AEAB5-8C86-4843-A026-00DE072B123D}.Debug|Any CPU.ActiveCfg = Debug
+		{C34AEAB5-8C86-4843-A026-00DE072B123D}.Debug|Any CPU.Build.0 = Debug
+		{C34AEAB5-8C86-4843-A026-00DE072B123D}.Release|Any CPU.ActiveCfg = Release
+		{C34AEAB5-8C86-4843-A026-00DE072B123D}.Release|Any CPU.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
