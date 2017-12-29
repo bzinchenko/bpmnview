@@ -48,8 +48,9 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BPMN.Sharp">
-      <HintPath>..\packages\BPMN.Sharp.1.0.0\lib\net20\BPMN.Sharp.dll</HintPath>
+    <Reference Include="BPMN.Sharp, Version=1.0.5.10984, Culture=neutral, PublicKeyToken=e11a3c302b993b1a, processorArchitecture=MSIL">
+      <HintPath>..\packages\BPMN.Sharp.1.0.5\lib\net20\BPMN.Sharp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
