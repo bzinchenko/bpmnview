@@ -75,7 +75,7 @@
     <ManifestCertificateThumbprint>3C2D86A2D21A0F584147367265794568E6167092</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>BPMN.View_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>BPMN.View_Key.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -160,7 +160,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
-    <None Include="BPMN.View_TemporaryKey.pfx" />
+    <None Include="BPMN.View_Key.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
