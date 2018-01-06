@@ -1,5 +1,6 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/ykti6ct855mmq45a?svg=true)](https://ci.appveyor.com/project/bzinchenko/bpmnview)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fbzinchenko%2Fbpmnview.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fbzinchenko%2Fbpmnview?ref=badge_shield)
+
 # BPMN View
 A simple free tool to view and print business process diagrams in a popular BPMN format. 
 
@@ -38,3 +39,7 @@ Below is the result:
 ![bzinchenko](Images/B.2.0.png)
 
 BPMN View was created with support from [CaseAgile LLC](http://caseagile.com/), an innovative software and business service company specializing in integration of platforms and environments for enterprise modeling. Find more on official company page: [http://caseagile.com/](http://caseagile.com/)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fbzinchenko%2Fbpmnview.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fbzinchenko%2Fbpmnview?ref=badge_large)
