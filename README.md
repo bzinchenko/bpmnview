@@ -10,7 +10,7 @@ A simple free tool to view and print business process diagrams in a popular BPMN
 * Arbitrary scaling and zooming view of most complex diagrams.
 * Support of raster and vector image output.
 * Batch processing of multiple BPMN files.
-* Simple API to create new BPMN models.
+* Simple API to create and edit BPMN models.
 * 100% Microsoft .NET managed solution.
 * Loyal open source license for private and commercial use.
  
