@@ -23,7 +23,8 @@ Try it yourself!
  
 ![bzinchenko](Images/BPMN_View.png)
 
-##Code example
+## Code example to create diagram image
+
 Jump start your BPMN capable solution in minutes!
 
 Sample code to read BPMN file and save it as an image:
@@ -37,6 +38,8 @@ img.Save("B.2.0.png", ImageFormat.Png);
 Below is the result:
 
 ![bzinchenko](Images/B.2.0.png)
+
+## Code example to create new diagram
 
 Sample code to create a new BPMN model and write it to file:
 
