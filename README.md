@@ -1,7 +1,6 @@
 [![NuGet](https://img.shields.io/nuget/v/BPMN.Sharp.svg)](https://www.nuget.org/packages/BPMN.Sharp/)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/BPMN.Sharp.svg)](https://www.nuget.org/packages/BPMN.Sharp/)
 [![BPMN 2.0](https://img.shields.io/badge/BPMN-2.0.2-blue.svg)](https://www.omg.org/spec/BPMN/2.0.2/PDF)
-[![GitHub Stars](https://img.shields.io/github/stars/bzinchenko/bpmnview.svg)](https://github.com/bzinchenko/bpmnview/stargazers)
 [![Build status](https://ci.appveyor.com/api/projects/status/ykti6ct855mmq45a?svg=true)](https://ci.appveyor.com/project/bzinchenko/bpmnview)
 [![Build](https://github.com/bzinchenko/bpmnview/actions/workflows/build.yml/badge.svg)](https://github.com/bzinchenko/bpmnview/actions/workflows/build.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
