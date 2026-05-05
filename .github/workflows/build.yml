@@ -1,0 +1,17 @@
+name: Build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0'
+      - name: Restore
+        run: dotnet restore Code/BPMN.View.sln
+      - name: Build
+        run: dotnet build Code/BPMN.View.sln --configuration Release
