@@ -1,123 +1,200 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/ykti6ct855mmq45a?svg=true)](https://ci.appveyor.com/project/bzinchenko/bpmnview)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fbzinchenko%2Fbpmnview.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fbzinchenko%2Fbpmnview?ref=badge_shield)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![NuGet](https://img.shields.io/nuget/v/BPMN.Sharp.svg)](https://www.nuget.org/packages/BPMN.Sharp/)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fbzinchenko%2Fbpmnview.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fbzinchenko%2Fbpmnview?ref=badge_shield)
 
 # BPMN View
-A simple free tool to view and print business process diagrams in a popular BPMN format. 
 
-* Full conformance to the latest version of [BPMN 2.0 specification by OMG](http://www.bpmn.org/).
-* Import models from all [major BPM vendors](http://bpmn-miwg.github.io/bpmn-miwg-tools/)
-* Strict validation of the model according to BPMN specification.
-* Arbitrary scaling and zooming view of most complex diagrams.
-* Support of raster and vector image output.
-* Batch processing of multiple BPMN files.
-* Simple API to create and edit BPMN models.
-* 100% Microsoft .NET managed solution.
-* Loyal open source license for private and commercial use.
- 
-Try it yourself!
-* Download one-click [setup for Windows](https://github.com/bzinchenko/bpmnview/blob/master/Setup/BPMNView_Setup.zip).
-* Download pre-built [binary package](https://github.com/bzinchenko/bpmnview/blob/master/Setup/BPMNView_Sources.zip).
-* Clone project repository and build it with Microsoft Visual Studio.
-* Test it on files from [offcial BPMN test suite](https://github.com/bpmn-miwg/bpmn-miwg-test-suite).
-* Build your own open source or commercial solution based on this code.
- 
-![bzinchenko](Images/BPMN_View.png)
+A free, open source tool to view, print and programmatically create and edit business process diagrams in the [BPMN 2.0](https://www.omg.org/spec/BPMN/2.0.2/PDF) format.
 
-## Code example to create diagram image
+[![BPMN View Screenshot](Images/BPMN_View.png)](Images/BPMN_View.png)
 
-Jump start your BPMN capable solution in minutes!
+---
 
-Sample code to read BPMN file and save it as an image:
+## Features
+
+- Full conformance to the [BPMN 2.0.2 specification by OMG](https://www.omg.org/spec/BPMN/2.0.2/PDF)
+- Imports models from all [major BPM vendors](http://bpmn-miwg.github.io/bpmn-miwg-tools/)
+- Validated against the official [BPMN MIWG test suite](https://github.com/bpmn-miwg/bpmn-miwg-test-suite)
+- Arbitrary scaling and zooming of complex diagrams
+- Raster (PNG, BMP) and vector image output
+- Batch processing of multiple BPMN files
+- Programmatic API to create, edit and normalise BPMN models ([BPMN.Sharp NuGet](https://www.nuget.org/packages/BPMN.Sharp/))
+- 100% Microsoft .NET managed solution
+- MIT licence — free for private and commercial use
+
+---
+
+## Getting Started
+
+### Option 1 — Use the desktop viewer
+
+- Download the one-click [setup for Windows](Setup/BPMNView_Setup.zip)
+- Download the pre-built [binary package](Setup/BPMNView_Sources.zip)
+- Or clone this repository and build with Visual Studio
+
+### Option 2 — Use the NuGet package in your own project
+
+```bash
+dotnet add package BPMN.Sharp
+```
+
+```powershell
+# Visual Studio Package Manager Console
+Install-Package BPMN.Sharp
+```
+
+---
+
+## Reading and Rendering a BPMN File
+
+Read any BPMN 2.0 file and save it as a PNG image in three lines:
 
 ```csharp
-Model model = BPMN.Model.Read("B.2.0.bpmn");
+using BPMN;
+using System.Drawing.Imaging;
+
+Model model = Model.Read("B.2.0.bpmn");
 Image img = model.GetImage(0, 2.0f);
 img.Save("B.2.0.png", ImageFormat.Png);
 ```
 
-Below is the result:
+Result:
 
-![bzinchenko](Images/B.2.0.png)
+[![B.2.0 collaboration diagram](Images/B.2.0.png)](Images/B.2.0.png)
 
-## Code example to create new diagram
+---
 
-Sample code to create a new BPMN model and write it to file:
+## Creating a BPMN Model Programmatically
+
+The `Editor` class provides a complete API for creating and modifying BPMN 2.0 models. Every method maps directly to elements defined in the BPMN 2.0.2 specification.
 
 ```csharp
-    public static bool Create(string fileName)
-    {
-      Editor editor = new Editor();
-      editor.Create("BPMN Model", "User");
+using BPMN;
+using System.Collections.Generic;
+using System.Drawing;
 
-      string id1 = editor.AddEvent(null, null, "Start Event", EventType.Start, EventTrigger.None, EventRole.None);
-      string id2 = editor.AddActivity(null, "Task 1", ActivityType.Task, ActivityMarker.None, TaskType.User, null);
-      string id3 = editor.AddActivity(null, "Task 2", ActivityType.Task, ActivityMarker.None, TaskType.Manual, null);
-      string id4 = editor.AddActivity(null, "Task 3", ActivityType.Task, ActivityMarker.None, TaskType.Service, null);
-      string id5 = editor.AddEvent(null, null, "End Event", EventType.End, EventTrigger.None, EventRole.None);
-      string id7 = editor.AddFlow(null, null, id1, id2, null, FlowType.Sequence, null, false, FlowDirection.None);
-      string id8 = editor.AddFlow(null, null, id2, id3, null, FlowType.Sequence, null, false, FlowDirection.None);
-      string id9 = editor.AddFlow(null, null, id3, id4, null, FlowType.Sequence, null, false, FlowDirection.None);
-      string id10 = editor.AddFlow(null, null, id4, id5, null, FlowType.Sequence, null, false, FlowDirection.None);
+Editor editor = new Editor();
+editor.Create("My Process", "Author");
 
-      string id = editor.AddDiagram("Test 1", 96);
+// Semantic layer — add process elements, each returning an auto-generated ID
+string start = editor.AddEvent(null, null, "Start Event",
+    EventType.Start, EventTrigger.None, EventRole.None);
+string task1 = editor.AddActivity(null, "Task 1",
+    ActivityType.Task, ActivityMarker.None, TaskType.User, null);
+string task2 = editor.AddActivity(null, "Task 2",
+    ActivityType.Task, ActivityMarker.None, TaskType.Manual, null);
+string task3 = editor.AddActivity(null, "Task 3",
+    ActivityType.Task, ActivityMarker.None, TaskType.Service, null);
+string end = editor.AddEvent(null, null, "End Event",
+    EventType.End, EventTrigger.None, EventRole.None);
 
-      Shape shape = new Shape();
-      Rectangle rect = new Rectangle(10, 10, 30, 30);
-      shape.Bounds = new List<Rectangle>();
-      shape.Bounds.Add(rect);
-      shape.ElementRef = id1;
-      editor.AddShape(id, shape);
+string f1 = editor.AddFlow(null, null, start, task1, null, FlowType.Sequence, null, false, FlowDirection.None);
+string f2 = editor.AddFlow(null, null, task1, task2, null, FlowType.Sequence, null, false, FlowDirection.None);
+string f3 = editor.AddFlow(null, null, task2, task3, null, FlowType.Sequence, null, false, FlowDirection.None);
+string f4 = editor.AddFlow(null, null, task3, end,   null, FlowType.Sequence, null, false, FlowDirection.None);
 
-      rect.Width = 70;
-      rect.Offset(60, 0);
-      shape.Bounds[0] = rect;
-      shape.ElementRef = id2;
-      editor.AddShape(id, shape);
+// Diagram layer — add visual positions (Shape.Bounds uses integer Rectangle)
+string diag = editor.AddDiagram("Diagram 1", 96f);
 
-      rect.Offset(100, 0);
-      shape.Bounds[0] = rect;
-      shape.ElementRef = id3;
-      editor.AddShape(id, shape);
+Shape shape = new Shape();
+shape.Bounds = new List<Rectangle>();
 
-      rect.Offset(100, 0);
-      shape.Bounds[0] = rect;
-      shape.ElementRef = id4;
-      editor.AddShape(id, shape);
+shape.ElementRef = start;
+shape.Bounds = new List<Rectangle> { new Rectangle(10, 10, 30, 30) };
+editor.AddShape(diag, shape);
 
-      rect.Width = 30;
-      rect.Offset(100, 0);
-      shape.Bounds[0] = rect;
-      shape.ElementRef = id5;
-      editor.AddShape(id, shape);
+shape.ElementRef = task1;
+shape.Bounds = new List<Rectangle> { new Rectangle(70, 10, 70, 30) };
+editor.AddShape(diag, shape);
 
-      List<Point> points = new List<Point>();
-      points.Add(new Point()); points.Add(new Point());
-      points[0] = new Point(40, 25); points[1] = new Point(70, 25);
-      Edge edge = new Edge() { ElementRef = id7, Points = points }; 
-      editor.AddEdge(id, edge);
+shape.ElementRef = task2;
+shape.Bounds = new List<Rectangle> { new Rectangle(170, 10, 70, 30) };
+editor.AddShape(diag, shape);
 
-      points[0] = new Point(140, 25); points[1] = new Point(170, 25);
-      edge = new Edge() { ElementRef = id8, Points = points }; 
-      editor.AddEdge(id, edge);
+shape.ElementRef = task3;
+shape.Bounds = new List<Rectangle> { new Rectangle(270, 10, 70, 30) };
+editor.AddShape(diag, shape);
 
-      points[0] = new Point(240, 25); points[1] = new Point(270, 25);
-      edge = new Edge() { ElementRef = id9, Points = points }; 
-      editor.AddEdge(id, edge);
+shape.ElementRef = end;
+shape.Bounds = new List<Rectangle> { new Rectangle(370, 10, 30, 30) };
+editor.AddShape(diag, shape);
 
-      points[0] = new Point(340, 25); points[1] = new Point(370, 25);
-      edge = new Edge() { ElementRef = id10, Points = points }; 
-      editor.AddEdge(id, edge);
+Edge edge = new Edge();
+edge.Points = new List<Point> { new Point(40, 25), new Point(70, 25) };
+edge.ElementRef = f1; editor.AddEdge(diag, edge);
 
-      return editor.Save(fileName);
-    }
+edge.Points = new List<Point> { new Point(140, 25), new Point(170, 25) };
+edge.ElementRef = f2; editor.AddEdge(diag, edge);
+
+edge.Points = new List<Point> { new Point(240, 25), new Point(270, 25) };
+edge.ElementRef = f3; editor.AddEdge(diag, edge);
+
+edge.Points = new List<Point> { new Point(340, 25), new Point(370, 25) };
+edge.ElementRef = f4; editor.AddEdge(diag, edge);
+
+editor.Save("MyProcess.bpmn");
 ```
 
-Below is the result:
+Result:
 
-![bzinchenko](Images/TestModel.png)
+[![Simple process diagram](Images/TestModel.png)](Images/TestModel.png)
 
-BPMN View was created with support from [CaseAgile LLC](http://caseagile.com/), an innovative software and business service company specializing in integration of platforms and environments for enterprise modeling. Find more on official company page: [http://caseagile.com/](http://caseagile.com/)
+---
 
+## API Documentation
+
+Complete documentation for the `Editor` class is in the [`Docs`](Docs/) folder:
+
+| Article | Topics |
+|---------|--------|
+| [01 – Getting Started](Docs/01-getting-started.md) | `Create`, `Load`, `Parse`, `Save`, `Serialize`, `Refresh`, `Normalize` |
+| [02 – Events](Docs/02-events.md) | `AddEvent` — all types, triggers and roles |
+| [03 – Activities](Docs/03-activities.md) | `AddActivity` — tasks, sub-processes, markers |
+| [04 – Gateways](Docs/04-gateways.md) | `AddGateway` — all five gateway types |
+| [05 – Flows](Docs/05-flows.md) | `AddFlow` — sequence, message, association, conditional, default |
+| [06 – Pools and Lanes](Docs/06-pools-lanes.md) | `AddCollaboration`, `AddProcess`, `AddPool`, `AddLane`, `AddToLane` |
+| [07 – Data and Artifacts](Docs/07-data-artifacts.md) | `AddAnnotation`, `AddDataObject`, `AddDataStore`, `AddGroup`, `AddMessage` |
+| [08 – Diagram Layout](Docs/08-diagram-layout.md) | `AddDiagram`, `AddShape`, `AddEdge`, labels, waypoints, positions |
+| [09 – Element Manipulation](Docs/09-element-manipulation.md) | `CountElements`, `UpdateElement`, `RemoveElement` |
+| [10 – Complete Examples](Docs/10-examples.md) | Full MIWG-aligned examples A.1.0 through C series |
+
+---
+
+## Code Examples
+
+The [`Examples`](Examples/) folder contains a ready-to-run Visual Studio solution targeting .NET Framework 4.7.2. It demonstrates every `Editor` method with realistic, complete BPMN models based on the official [BPMN MIWG reference test suite](https://github.com/bpmn-miwg/bpmn-miwg-test-suite).
+
+| File | BPMN Concepts | MIWG Reference |
+|------|--------------|----------------|
+| `GettingStarted.cs` | Create, Load, Save, Normalize, Parse, Serialize | A.1.0 |
+| `Events.cs` | All event types, triggers and boundary events | A.2.0, A.4.1 |
+| `Activities.cs` | Tasks, sub-processes, loop, compensation | A.3.0, C.1.0 |
+| `Gateways.cs` | Exclusive, Inclusive, Parallel, Event-Based | A.4.0, C.6.0 |
+| `Flows.cs` | Sequence, Message, Association flows | B.1.0 |
+| `PoolsAndLanes.cs` | Collaboration, pools, lanes | B.2.0 |
+| `DataAndArtifacts.cs` | Data objects, annotations, groups, messages | C.2.0 |
+| `DiagramLayout.cs` | Shapes, edges, labels, waypoints | C.3.0 |
+| `ElementManipulation.cs` | Update, remove and count elements | — |
+
+Build and run the solution — all examples write `.bpmn` and `.png` files to the `Output/` folder.
+
+---
+
+## BPMN MIWG
+
+This project is maintained by a member of the [BPMN Model Interchange Working Group (BPMN MIWG)](http://bpmn-miwg.github.io/bpmn-miwg-tools/) at the OMG, active since its foundation in 2013. The MIWG reference test suite is used as the authoritative source of BPMN 2.0 conformance models throughout this project's documentation and examples.
+
+---
+
+## About
+
+BPMN View was created with support from [CaseAgile LLC](http://caseagile.com/), specialising in integration of platforms and environments for enterprise modeling.
+
+---
 
 ## License
+
+MIT — free for private and commercial use.
+
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fbzinchenko%2Fbpmnview.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fbzinchenko%2Fbpmnview?ref=badge_large)
