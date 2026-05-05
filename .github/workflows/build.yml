@@ -7,11 +7,15 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.0'
-      - name: Restore
-        run: dotnet restore Code/BPMN.View.sln
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: Restore NuGet packages
+        run: nuget restore Code/BPMN.View.sln
+
       - name: Build
-        run: dotnet build Code/BPMN.View.sln --configuration Release
+        run: msbuild Code/BPMN.View.sln /p:Configuration=Release /verbosity:minimal
