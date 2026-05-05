@@ -75,7 +75,13 @@ namespace BPMN.View
           comboDiagram.Items.Add(dia.Name);
         if (comboDiagram.Items.Count > 0)
           comboDiagram.SelectedIndex = 0;
-        
+
+        string[] langs = Translation.Languages(model);
+        comboLanguage.Items.Clear();
+        comboLanguage.Items.AddRange(langs);
+        if (comboLanguage.Items.Count > 0)
+          comboLanguage.SelectedIndex = 0;
+
         this.Text = "BPMN View - " + file;
       }
       catch (Exception ex)
@@ -90,7 +96,7 @@ namespace BPMN.View
       openFileDialog1.FileName = "";
       openFileDialog1.CheckPathExists = true;
       openFileDialog1.Filter = "BPMN Files|*.bpmn|All files (*.*)|*.*";
-      openFileDialog1.Title = "Select a BPMN File"; 
+      openFileDialog1.Title = "Select a BPMN File";
       DialogResult result = openFileDialog1.ShowDialog();
       if (result == DialogResult.OK)
       {
@@ -101,12 +107,12 @@ namespace BPMN.View
 
     private void comboDiagram_SelectedIndexChanged(object sender, EventArgs e)
     {
-      if (model != null)
-      {
-        int idx = comboDiagram.SelectedIndex;
-        if(idx >= 0) diagramImage = model.GetImage(idx, scale);
-        ZoomReset();
-      }
+      UpdateImage();
+    }
+
+    private void comboLanguage_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      UpdateImage();
     }
 
     private void buttonPrint_Click(object sender, EventArgs e)
@@ -123,7 +129,7 @@ namespace BPMN.View
     private void SaveAs(System.Drawing.Imaging.ImageFormat format)
     {
       if (diagramImage == null)
-      { 
+      {
         MessageBox.Show("No model loaded!");
         return;
       }
@@ -203,6 +209,21 @@ namespace BPMN.View
       about.ShowDialog(this);
     }
 
+    private void UpdateImage()
+    {
+      if (model != null)
+      {
+        int idx = comboDiagram.SelectedIndex;
+        if (comboLanguage.SelectedItem != null)
+        {
+          string lang = comboLanguage.SelectedItem.ToString();
+          if (lang != null && lang != "Default") model.Language = lang;
+        }
+        if (idx >= 0) diagramImage = model.GetImage(idx, scale);
+        ZoomReset();
+      }
+    }
+
     private void ZoomReset()
     {
       if (diagramImage == null) return;
@@ -213,7 +234,7 @@ namespace BPMN.View
       double ratio = Math.Min(zoomH, zoomV);
       Zoom(ratio);
     }
-    
+
     private void Zoom(double ratio)
     {
       if (diagramImage == null) return;
@@ -221,14 +242,14 @@ namespace BPMN.View
       int targetWidth = (int)(ratio * diagramImage.Width);
       int targetHeight = (int)(ratio * diagramImage.Height);
 
-      Bitmap bmp = ResizeImage(diagramImage, targetWidth, targetHeight); 
+      Bitmap bmp = ResizeImage(diagramImage, targetWidth, targetHeight);
       pictureDiagram.Image = bmp;
 
       panelSelected.Visible = false;
 
       zoomRatio = ratio;
     }
-    
+
     private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
     {
       if (diagramImage == null) return;
@@ -236,13 +257,13 @@ namespace BPMN.View
       double zoomH = (double)(e.MarginBounds.Width - 20) / diagramImage.Width;
       double zoomV = (double)(e.MarginBounds.Height - 20) / diagramImage.Height;
       double zoomPrint = Math.Min(zoomH, zoomV);
-      
+
       int targetWidth = (int)(zoomPrint * diagramImage.Width);
       int targetHeight = (int)(zoomPrint * diagramImage.Height);
 
       e.Graphics.DrawImage(diagramImage, 0, 0);
     }
-    
+
     public static Bitmap ResizeImage(System.Drawing.Image image, int width, int height)
     {
       var destRect = new Rectangle(0, 0, width, height);
@@ -291,7 +312,7 @@ namespace BPMN.View
         {
           string id = null;
           Diagram dia = model.Diagrams[idx];
-          
+
           Shape shape = BPMN.Geometry.ShapeAtPoint(dia, pt);
           if (shape != null)
           {

@@ -40,7 +40,7 @@ namespace BPMN.View
       const int penWidth = 2;
       int offset = penWidth - 1;
       using (Pen pen = new Pen(Color.Red, 2))
-        e.Graphics.DrawRectangle(pen, offset, offset, 
+        e.Graphics.DrawRectangle(pen, offset, offset,
           ClientSize.Width - offset - 1, ClientSize.Height - offset - 1);
     }
 

@@ -52,14 +52,16 @@
       this.printDialog1 = new System.Windows.Forms.PrintDialog();
       this.printDocument1 = new System.Drawing.Printing.PrintDocument();
       this.panelTop = new System.Windows.Forms.Panel();
+      this.comboLanguage = new System.Windows.Forms.ComboBox();
+      this.label2 = new System.Windows.Forms.Label();
       this.comboDiagram = new System.Windows.Forms.ComboBox();
       this.label1 = new System.Windows.Forms.Label();
       this.panelImage = new System.Windows.Forms.Panel();
+      this.panelSelected = new BPMN.View.SelectionBox();
       this.pictureDiagram = new System.Windows.Forms.PictureBox();
       this.splitMain = new System.Windows.Forms.SplitContainer();
       this.splitRight = new System.Windows.Forms.SplitContainer();
       this.treeModel = new System.Windows.Forms.TreeView();
-      this.panelSelected = new BPMN.View.SelectionBox();
       this.ctlElement = new BPMN.View.ElementControl();
       buttonTable = new System.Windows.Forms.Button();
       this.panelLeft.SuspendLayout();
@@ -80,7 +82,7 @@
       // buttonTable
       // 
       buttonTable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-      buttonTable.Location = new System.Drawing.Point(621, 9);
+      buttonTable.Location = new System.Drawing.Point(699, 9);
       buttonTable.Name = "buttonTable";
       buttonTable.Size = new System.Drawing.Size(99, 23);
       buttonTable.TabIndex = 3;
@@ -97,7 +99,7 @@
       // 
       this.statusStrip1.Location = new System.Drawing.Point(0, 501);
       this.statusStrip1.Name = "statusStrip1";
-      this.statusStrip1.Size = new System.Drawing.Size(833, 22);
+      this.statusStrip1.Size = new System.Drawing.Size(911, 22);
       this.statusStrip1.TabIndex = 0;
       this.statusStrip1.Text = "statusStrip1";
       // 
@@ -288,14 +290,35 @@
       // 
       // panelTop
       // 
+      this.panelTop.Controls.Add(this.comboLanguage);
+      this.panelTop.Controls.Add(this.label2);
       this.panelTop.Controls.Add(buttonTable);
       this.panelTop.Controls.Add(this.comboDiagram);
       this.panelTop.Controls.Add(this.label1);
       this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
       this.panelTop.Location = new System.Drawing.Point(101, 0);
       this.panelTop.Name = "panelTop";
-      this.panelTop.Size = new System.Drawing.Size(732, 41);
+      this.panelTop.Size = new System.Drawing.Size(810, 41);
       this.panelTop.TabIndex = 4;
+      // 
+      // comboLanguage
+      // 
+      this.comboLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.comboLanguage.FormattingEnabled = true;
+      this.comboLanguage.Location = new System.Drawing.Point(597, 11);
+      this.comboLanguage.Name = "comboLanguage";
+      this.comboLanguage.Size = new System.Drawing.Size(86, 21);
+      this.comboLanguage.TabIndex = 5;
+      this.comboLanguage.SelectedIndexChanged += new System.EventHandler(this.comboLanguage_SelectedIndexChanged);
+      // 
+      // label2
+      // 
+      this.label2.AutoSize = true;
+      this.label2.Location = new System.Drawing.Point(533, 14);
+      this.label2.Name = "label2";
+      this.label2.Size = new System.Drawing.Size(58, 13);
+      this.label2.TabIndex = 4;
+      this.label2.Text = "Language:";
       // 
       // comboDiagram
       // 
@@ -303,7 +326,7 @@
       this.comboDiagram.FormattingEnabled = true;
       this.comboDiagram.Location = new System.Drawing.Point(100, 11);
       this.comboDiagram.Name = "comboDiagram";
-      this.comboDiagram.Size = new System.Drawing.Size(459, 21);
+      this.comboDiagram.Size = new System.Drawing.Size(427, 21);
       this.comboDiagram.TabIndex = 1;
       this.comboDiagram.SelectedIndexChanged += new System.EventHandler(this.comboDiagram_SelectedIndexChanged);
       // 
@@ -324,8 +347,16 @@
       this.panelImage.Dock = System.Windows.Forms.DockStyle.Fill;
       this.panelImage.Location = new System.Drawing.Point(0, 0);
       this.panelImage.Name = "panelImage";
-      this.panelImage.Size = new System.Drawing.Size(405, 460);
+      this.panelImage.Size = new System.Drawing.Size(483, 460);
       this.panelImage.TabIndex = 5;
+      // 
+      // panelSelected
+      // 
+      this.panelSelected.Location = new System.Drawing.Point(49, 186);
+      this.panelSelected.Name = "panelSelected";
+      this.panelSelected.Size = new System.Drawing.Size(100, 57);
+      this.panelSelected.TabIndex = 5;
+      this.panelSelected.Click += new System.EventHandler(this.panelSelected_Click);
       // 
       // pictureDiagram
       // 
@@ -351,8 +382,8 @@
       // splitMain.Panel2
       // 
       this.splitMain.Panel2.Controls.Add(this.splitRight);
-      this.splitMain.Size = new System.Drawing.Size(732, 460);
-      this.splitMain.SplitterDistance = 405;
+      this.splitMain.Size = new System.Drawing.Size(810, 460);
+      this.splitMain.SplitterDistance = 483;
       this.splitMain.TabIndex = 6;
       // 
       // splitRight
@@ -384,14 +415,6 @@
       this.treeModel.TabIndex = 0;
       this.treeModel.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeModel_AfterSelect);
       // 
-      // panelSelected
-      // 
-      this.panelSelected.Location = new System.Drawing.Point(49, 186);
-      this.panelSelected.Name = "panelSelected";
-      this.panelSelected.Size = new System.Drawing.Size(100, 57);
-      this.panelSelected.TabIndex = 5;
-      this.panelSelected.Click += new System.EventHandler(this.panelSelected_Click);
-      // 
       // ctlElement
       // 
       this.ctlElement.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -405,7 +428,7 @@
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.SystemColors.Window;
-      this.ClientSize = new System.Drawing.Size(833, 523);
+      this.ClientSize = new System.Drawing.Size(911, 523);
       this.Controls.Add(this.splitMain);
       this.Controls.Add(this.panelTop);
       this.Controls.Add(this.panelLeft);
@@ -468,6 +491,8 @@
     private System.Windows.Forms.TreeView treeModel;
     private ElementControl ctlElement;
     private SelectionBox panelSelected;
+    private System.Windows.Forms.ComboBox comboLanguage;
+    private System.Windows.Forms.Label label2;
   }
 }
 

@@ -65,7 +65,7 @@ namespace BPMN.View
     {
       if (node != null)
       {
-        if (node.Tag != null && 
+        if (node.Tag != null &&
           node.Tag == element) return node;
 
         foreach (TreeNode nd in node.Nodes)

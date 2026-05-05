@@ -43,7 +43,7 @@ namespace BPMN.View
     {
       InitializeComponent();
     }
-    
+
     public void Init(Model mdl)
     {
       model = mdl;
