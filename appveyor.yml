@@ -1,0 +1,8 @@
+image: Visual Studio 2022
+
+before_build:
+  - nuget restore Code/BPMN.View.sln
+
+build:
+  project: Code/BPMN.View.sln
+  verbosity: minimal
